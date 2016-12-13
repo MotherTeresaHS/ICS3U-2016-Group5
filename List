@@ -1,0 +1,53 @@
+ Hockey Shootout List
+
+Get the starting repository from Mr. Coxall.
+Make the company logo and game logo in photoshop.
+Create company logo scene file.
+Make background white.
+Insert company logo into the middle of the screen.
+Make the company logo and game logo in photoshop.
+Create game logo scene file.
+Make background white.
+Insert game logo into the middle of the screen.
+Create main menu file
+Insert winter themed background.
+Insert copyright statement text at the bottom.
+Insert hockey shootout text at the top.
+Insert game logo in the middle.
+Insert start button in the middle. If clicked on, direct to game scene.
+Insert help button in the middle. If clicked on, direct to help scene.
+Insert options button in the middle. If clicked on, direct to options scene.
+Create help scene file.
+Insert winter themed background.
+Insert back button on top left. If clicked on, direct to main menu scene.
+Insert how to play instructions at the top,
+Insert controls in the middle.
+Insert credits at the bottom.
+Create options scene file.
+Insert winter themed background.
+Insert option button in the middle. If clicked on, direct to options scene.
+Insert back button on top left. If clicked on, direct to main menu scene.
+Insert sound label with on and off buttons. If on is clicked, sound starts on. If off is clicked, sound is turned off.
+Insert music label with on and off buttons. If on is clicked, music starts on. If off is clicked, music is turned off.
+Insert high score label.
+Create game scene file.
+Insert ice rink background.
+Insert player into the middle of the screen.
+Insert hockey net at the top.
+Insert goalie in front of net. Goalie moves left and right constantly.
+Insert 3 lives on the left.
+Insert score label at the bottom.
+Insert pause button.
+Insert left button. If left button is clicked on, move the player left.
+Insert right button. If right button is clicked on, move the player right. 
+Insert shoot button. If shoot button is clicked on, shoot hockey puck towards the net. 
+If hockey puck touches the net, you score a goal. Your score goes up 1.
+If hockey puck touches the goalie, you lose one life.
+If you lose 3 lives, game over.
+If you lose, game over pops up in the middle of the screen with score, new game, and main menu.
+If new game is clicked, restart game.
+If main menu is clicked, direct to main menu.
+If pause button is clicked, pause pop up appears. It displays main menu, restart and resume buttons.
+If main menu is clicked, go to main menu scene.
+If restart is clicked, restart the game.
+If resume is clicked, resume game.
