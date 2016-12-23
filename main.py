@@ -18,11 +18,9 @@
 # To exit the app in Pythonista, pull down with 2 fingers.
 
 from scene import *
-import ui
-
 from company_logo_scene import *
 from game_logo_scene import *
-
+import ui
 
 #  ..use when deploying app for Xcode and the App Store
 main_view = ui.View()
