@@ -1,7 +1,7 @@
 # Created by: Rehan and Paul
 # Created on: Dec 2016
 # Created for: ICS3U
-# This scene shows the main game.
+# This scene shows the main game
 
 from scene import *
 import ui
@@ -9,7 +9,7 @@ import sound
 
 class GameScene(Scene):
     def setup(self):
-        # this method is called, when user moves to this scene
+        # constants 
         self.size_of_screen_x = self.size.x
         self.size_of_screen_y = self.size.y
         self.screen_center_x = self.size_of_screen_x/2
@@ -18,23 +18,25 @@ class GameScene(Scene):
         self.right_button_down = False
         self.game_over = False
         self.movingLeft = True
-        self.leftBound = 205
-        self.rightBound = 565
+        self.leftBound = self.screen_center_x * 0.5
+        self.rightBound = self.screen_center_x * 1.45
         self.player_move_speed = 35.0
         self.goalie_move_speed = 25.0
         self.score = 0
         self.pucks = []
 
         # add rink background
-        self.background = SpriteNode('./assets/sprites/rink.JPG',
+        rink_background_position = Vector2(self.screen_center_x, 
+                                      self.screen_center_y)
+        self.rink_background = SpriteNode('./assets/sprites/rink.JPG',
                                        parent = self,
-                                       position = self.size/2,
-                                       scale = 1)
+                                       position = rink_background_position,
+                                       size = self.size)
 
         # exit button
-        exit_button_position = Vector2()
+        exit_button_position = self.size
         exit_button_position.x = 75
-        exit_button_position.y = 949
+        exit_button_position.y = exit_button_position.y - 100
         self.exit_button = SpriteNode('./assets/sprites/exit.PNG',
                                        parent = self,
                                        position = exit_button_position,
@@ -69,12 +71,12 @@ class GameScene(Scene):
 
         # net
         net_position = Vector2()
-        net_position.x = 384
-        net_position.y = 901.5
+        net_position.x = self.screen_center_x
+        net_position.y = self.screen_center_y * 1.762
         self.net = SpriteNode('./assets/sprites/net.PNG',
                                       parent = self,
                                       position = net_position,
-                                      scale = 0.249)
+                                      scale = 0.25)
 
         # player
         player_position = Vector2()
@@ -86,32 +88,35 @@ class GameScene(Scene):
                                     scale = 0.15)
 
         # goalie
-        goalie_position = Vector2(565, 725)
+        goalie_position = Vector2(self.screen_center_x, self.screen_center_y * 1.4)
         self.goalie = SpriteNode('./assets/sprites/goalie.PNG',
                                     parent = self,
                                     position = goalie_position,
                                     scale = 0.15)
 
-        # game over scene "illusion"
-        self.game_over_background = SpriteNode('./assets/sprites/background.JPG',
+        # game over pop up
+        game_over_background_position = Vector2(self.screen_center_x, 
+                                      self.screen_center_y)
+        self.game_over_background = SpriteNode('./assets/sprites/game_over.PNG',
                                        parent = self,
-                                       position = self.size/2,
+                                       position = game_over_background_position,
+                                       scale = 1.2,
                                        alpha = 0)
 
         # game over label
         game_over_label_position = Vector2()
-        game_over_label_position.x = 384
-        game_over_label_position.y = 612
+        game_over_label_position.x = self.screen_center_x
+        game_over_label_position.y = self.screen_center_y * 1.185
         self.game_over_label = LabelNode(text = 'Game Over!',
-                                      font=('Avenir Next Condensed', 100),
+                                      font = ('Avenir Next Condensed', 100),
                                       parent = self,
                                       position = game_over_label_position,
                                       alpha = 0)
 
         # main menu button
         menu_button_position = Vector2()
-        menu_button_position.x = 384
-        menu_button_position.y = 412
+        menu_button_position.x = self.screen_center_x
+        menu_button_position.y = self.screen_center_y * 0.875
         self.menu_button = SpriteNode('./assets/sprites/main_menu.PNG',
                                        parent = self,
                                        position = menu_button_position,
@@ -120,35 +125,33 @@ class GameScene(Scene):
 
         # score label
         self.score_position = Vector2()
-        self.score_position.x = 384
+        self.score_position.x = self.screen_center_x
         self.score_position.y = 30
         self.score_label = LabelNode(text = 'Score: 0',
                                      color = 'red',
-                                     font=('Avenir Next Condensed', 40),
+                                     font = ('Avenir Next Condensed', 40),
                                      parent = self,
                                      position = self.score_position)
 
     def update(self):
-        # this method is called, hopefully, 60 times a second
-
-        # move the player if the button is down
-        if (self.player.position.x - self.player_move_speed)> 70:
+        # makes the player move
+        if (self.player.position.x - self.player_move_speed) > (self.screen_center_x * 0.25):
             if self.left_button_down == True:
-                playerMove = Action.move_by(-1*self.player_move_speed, 
+                playerMove = Action.move_by(-1 * self.player_move_speed, 
                                            0.0, 
                                            0.1)
                 self.player.run_action(playerMove)
 
-        if (self.player.position.x + self.player_move_speed) < self.size_of_screen_x-70:
+        if (self.player.position.x + self.player_move_speed) < self.size_of_screen_x - (self.screen_center_x * 0.25):
             if self.right_button_down == True:
                 playerMove = Action.move_by(self.player_move_speed, 
                                            0.0, 
                                            0.1)
                 self.player.run_action(playerMove)
 
-        # making the goalie move
+        # makes the goalie move
         if self.movingLeft == True:
-            goalieMove = Action.move_by(-1*self.goalie_move_speed, 
+            goalieMove = Action.move_by(-1 * self.goalie_move_speed, 
                                            0.0, 
                                            0.1)
             self.goalie.run_action(goalieMove)
@@ -157,7 +160,7 @@ class GameScene(Scene):
                 self.movingLeft = False
 
         if self.movingLeft == False:
-            goalieMove = Action.move_by(1*self.goalie_move_speed, 
+            goalieMove = Action.move_by(self.goalie_move_speed, 
                                            0.0, 
                                            0.1)
             self.goalie.run_action(goalieMove)
@@ -167,7 +170,7 @@ class GameScene(Scene):
 
         # check every update to see if a puck is off the screen
         for puck in self.pucks:
-            if puck.position.y > self.size_of_screen_y + 50:
+            if puck.position.y > self.size_of_screen_y * 1.1:
                 puck.remove_from_parent()
                 self.pucks.remove(puck)
 
@@ -189,6 +192,8 @@ class GameScene(Scene):
                 self.menu_button.alpha = 1
                 self.game_over_background.alpha = 1
                 self.game_over_label.alpha = 1
+                self.player_move_speed = 0
+                self.goalie_move_speed = 0
 
         else:
             pass
@@ -197,9 +202,7 @@ class GameScene(Scene):
         self.score_label.text = 'Score: ' + str(self.score)
 
     def touch_began(self, touch):
-        # this method is called, when user touches the screen
-
-        # creating a pop effect when a button(s) is clicked
+        # creates a pop effect when a button(s) is clicked
 
         # exit button
         if self.exit_button.frame.contains_point(touch.location):
@@ -219,11 +222,9 @@ class GameScene(Scene):
 
         # main menu button
         if self.menu_button.frame.contains_point(touch.location):
-            self.menu_button.scale = 0.45
+            self.menu_button.scale = 0.475
 
     def touch_ended(self, touch):
-        # this method is called, when user releases a finger from the screen
-
         # if the exit button is pressed, go to the main menu scene
         if self.exit_button.frame.contains_point(touch.location):
             self.exit_button.scale = 0.1
@@ -248,33 +249,33 @@ class GameScene(Scene):
                 self.menu_button.scale = 0.5
                 self.dismiss_modal_scene()
 
-        # shoot the puck
+        # shoots the puck
         if self.shoot_button.frame.contains_point(touch.location):
             # only shoot if it is not game over
             if self.game_over == False:
                 self.create_new_puck()
 
-        # if finger is removed, the player should not be moving anymore
+        # stops the player from moving when the left or right button isn't pressed
         else:
             self.left_button_down = False
             self.right_button_down = False
 
     def create_new_puck(self):
-        # creating the puck
+        # creates the puck
         puck_start_position = Vector2()
         puck_start_position.x = self.player.position.x
-        puck_start_position.y = 270
+        puck_start_position.y = self.screen_center_y * 0.55
 
         puck_end_position = Vector2()
         puck_end_position.x = puck_start_position.x
-        puck_end_position.y = self.size_of_screen_y + 270
+        puck_end_position.y = self.size_of_screen_y + 100
 
         self.pucks.append(SpriteNode('./assets/sprites/puck.png',
                              position = puck_start_position,
                              parent = self,
                              scale = 0.05))
 
-        # make the puck move forward
+        # makes the puck move forward
         puckMoveAction = Action.move_to(puck_end_position.x, 
                                            puck_end_position.y + 100, 
                                            3.0)
