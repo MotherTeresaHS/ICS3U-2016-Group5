@@ -36,25 +36,25 @@ class HelpScene(Scene):
         # how to play label
         how_to_play_label_position = Vector2()
         how_to_play_label_position.x = self.screen_center_x
-        how_to_play_label_position.y = self.screen_center_y * 1.59
+        how_to_play_label_position.y = self.screen_center_y * 1.6
         self.how_to_play_label = LabelNode(text = 'How To Play:',
                                       font = ('Avenir Next Condensed', 100),
                                       parent = self,
                                       position = how_to_play_label_position)
 
-        # the rules
-        rules_position = Vector2()
-        rules_position.x = self.screen_center_x
-        rules_position.y = self.screen_center_y * 1.19
-        self.rules = SpriteNode('./assets/sprites/rules.PNG',
+        # instructions
+        instructions_position = Vector2()
+        instructions_position.x = self.screen_center_x
+        instructions_position.y = self.screen_center_y * 1.2
+        self.instructions = SpriteNode('./assets/sprites/instructions.PNG',
                                       parent = self,
-                                      position = rules_position,
+                                      position = instructions_position,
                                       scale = 0.65)
 
         # controls label
         controls_label_position = Vector2()
         controls_label_position.x = self.screen_center_x
-        controls_label_position.y = self.screen_center_y * 0.79
+        controls_label_position.y = self.screen_center_y * 0.8
         self.controls_label = LabelNode(text = 'Controls:',
                                       font = ('Avenir Next Condensed', 100),
                                       parent = self,
@@ -63,7 +63,7 @@ class HelpScene(Scene):
         # controls
         controls1_position = Vector2()
         controls1_position.x = self.screen_center_x
-        controls1_position.y = self.screen_center_y * 0.59
+        controls1_position.y = self.screen_center_y * 0.6
         self.controls1 = SpriteNode('./assets/sprites/controls1.PNG',
                                       parent = self,
                                       position = controls1_position,
@@ -71,7 +71,7 @@ class HelpScene(Scene):
 
         controls2_position = Vector2()
         controls2_position.x = self.screen_center_x
-        controls2_position.y = self.screen_center_y * 0.39
+        controls2_position.y = self.screen_center_y * 0.4
         self.controls2 = SpriteNode('./assets/sprites/controls2.PNG',
                                       parent = self,
                                       position = controls2_position,
@@ -79,7 +79,7 @@ class HelpScene(Scene):
 
         controls3_position = Vector2()
         controls3_position.x = self.screen_center_x
-        controls3_position.y = self.screen_center_y * 0.19
+        controls3_position.y = self.screen_center_y * 0.2
         self.controls3 = SpriteNode('./assets/sprites/controls3.PNG',
                                       parent = self,
                                       position = controls3_position,
@@ -88,7 +88,7 @@ class HelpScene(Scene):
         # credits label
         credits_label_position = Vector2()
         credits_label_position.x = self.screen_center_x
-        credits_label_position.y = self.screen_center_y * 0.035
+        credits_label_position.y = self.screen_center_y * 0.045
         self.credits_label = LabelNode(text = 'Hockey Shootout was created by Paul Barasa and Rehan Fernando. Special thanks to qubodup, NenadSimic, David McKee, and Erik Streb!',
                                       font = ('Avenir Next Condensed', 15),
                                       parent = self,

@@ -29,7 +29,7 @@ class MainMenuScene(Scene):
         # title (game logo)
         title_position = Vector2()
         title_position.x = self.screen_center_x
-        title_position.y = self.screen_center_y * 1.565
+        title_position.y = self.screen_center_y * 1.575
         self.title = SpriteNode('./assets/sprites/game_logo.PNG',
                                       parent = self,
                                       position = title_position,
@@ -65,24 +65,24 @@ class MainMenuScene(Scene):
     def touch_began(self, touch):
         # creating a pop effect when a button(s) is clicked
 
-        # back button
-        if self.options_button.frame.contains_point(touch.location):
-            self.options_button.scale = 0.475
+        # start button
+        if self.start_button.frame.contains_point(touch.location):
+            self.start_button.scale = 0.475
 
         # help button
         if self.help_button.frame.contains_point(touch.location):
             self.help_button.scale = 0.475
 
-        # start button
-        if self.start_button.frame.contains_point(touch.location):
-            self.start_button.scale = 0.475
+        # options button
+        if self.options_button.frame.contains_point(touch.location):
+            self.options_button.scale = 0.475
 
     def touch_ended(self, touch):
-        # if the options button is pressed, go to the options scene
-        if self.options_button.frame.contains_point(touch.location):
-            self.options_button.scale = 0.5
+        # if the start button is pressed, go to the game scene
+        if self.start_button.frame.contains_point(touch.location):
+            self.start_button.scale = 0.5
             sound.play_effect('./assets/sounds/click.wav')
-            self.present_modal_scene(OptionsScene())
+            self.present_modal_scene(GameScene())
 
         # if the help button is pressed, go to the help scene
         if self.help_button.frame.contains_point(touch.location):
@@ -90,8 +90,8 @@ class MainMenuScene(Scene):
             sound.play_effect('./assets/sounds/click.wav')
             self.present_modal_scene(HelpScene())
 
-        # if the start button is pressed, go to the game scene
-        if self.start_button.frame.contains_point(touch.location):
-            self.start_button.scale = 0.5
+        # if the options button is pressed, go to the options scene
+        if self.options_button.frame.contains_point(touch.location):
+            self.options_button.scale = 0.5
             sound.play_effect('./assets/sounds/click.wav')
-            self.present_modal_scene(GameScene())
+            self.present_modal_scene(OptionsScene())
